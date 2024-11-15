@@ -3,7 +3,7 @@ library(shinydashboard)
 
 # Define UI using shinydashboard
 ui <- dashboardPage(
-  dashboardHeader(title = "Mutant Mapping Pipeline"),
+  dashboardHeader(title = "RNA Mapper"),
   
   dashboardSidebar(
     sidebarMenu(
