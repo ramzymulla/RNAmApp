@@ -10,32 +10,44 @@
 library(shiny)
 
 # Define UI for application that draws a histogram
-ui <- fluidPage(
-
-    # Application title
-    titlePanel("RNA Mapper Shiny App!"),
-
-    # Sidebar with a slider input for number of bins 
-    sidebarLayout(
-        sidebarPanel(
-            fileInput("Genome","Choose Aligned SAM or BAM file",
-                      multiple=F,
-                      accept = c("text/.sam",
-                                 "text/.bam",
-                                 ".sam",".bam")
-            ),
-            fileInput("SNPdb", "Choose SNP database",
-                        multiple=F,
-                        accept = c("text/.vcf", ".vcf")),
-            
-                            
-        ),
-
-        # Show a plot of the generated distribution
-        mainPanel(
-           plotOutput("distPlot")
+ui <- dashboardPage(
+  
+        tabPanel(title="Home",
+                  fluidPage(
+                    # Application title
+                    titlePanel("RNA Mapper Shiny App!"),
+                    sidebarLayout()
+                    
+                  )),
+        
+        tabPanel(title="Pipeline",
+        fluidPage(
+      
+          
+      
+          # Sidebar with a slider input for number of bins 
+          sidebarLayout(
+              sidebarPanel(
+                  fileInput("Genome","Choose Aligned SAM or BAM file",
+                            multiple=F,
+                            accept = c("text/.sam",
+                                       "text/.bam",
+                                       ".sam",".bam")
+                  ),
+                  fileInput("SNPdb", "Choose SNP database",
+                              multiple=F,
+                              accept = c("text/.vcf", ".vcf")),
+                  
+                                  
+              ),
+      
+              # Show a plot of the generated distribution
+              mainPanel(
+                 plotOutput("distPlot")
+              )
+          )
+      )
         )
-    )
 )
 
 # Define server logic required to draw a histogram
