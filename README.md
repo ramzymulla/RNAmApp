@@ -1,3 +1,3 @@
-===== RNA Mapper Shiny App ====
+# RNA Mapper Shiny App
 
 ***under construction***
