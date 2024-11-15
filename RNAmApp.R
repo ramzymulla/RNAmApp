@@ -18,8 +18,8 @@ ui <- dashboardPage(
     tabItems(
       # Home Page with integrated instructions
       tabItem(tabName = "home", 
-              h3("Welcome to the Mutant Mapping Pipeline!"),
-              p("This app will guide you through the process of running a mutant mapping pipeline."),
+              h3("Welcome to the RNA Mapper Pipeline!"),
+              p("This app will guide you through the process of identifying causitive mutations from bulk RNA-seq data."),
               p("Please use the menu on the left to navigate through different stages of the pipeline."),
               p("Each stage will allow you to upload files, process data, and view results."),
               
@@ -38,7 +38,15 @@ ui <- dashboardPage(
       tabItem(tabName = "stage_1",
               h3("Stage 1: File Upload"),
               p("In this stage, upload your input files for the mutant mapping pipeline."),
-              fileInput("input_file", "Choose input file", multiple = TRUE),
+              fileInput("input_genome", "Choose input file", 
+                        multiple = F,
+                        accept=c("text/.sam","text/.bam",
+                                 ".sam",".bam")),
+              fileInput("MUTdb", "Upload VCF containing known mutations", 
+                        multiple = F,
+                        accept=c("text/.vcf",
+                                 ".vcf")),
+              textInput("MUTdb_url","...or url download link"),
               actionButton("upload_button", "Upload Files"),
               uiOutput("upload_status")
       ),
