@@ -13,22 +13,22 @@ library(shiny)
 ui <- fluidPage(
 
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("RNA Mapper Shiny App!"),
 
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
         sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30),
-            fileInput("file1","Choose Aligned SAM or BAM file",
+            fileInput("Genome","Choose Aligned SAM or BAM file",
                       multiple=F,
                       accept = c("text/.sam",
                                  "text/.bam",
-                                 ".sam",".bam"
-                                 ))
+                                 ".sam",".bam")
+            ),
+            fileInput("SNPdb", "Choose SNP database",
+                        multiple=F,
+                        accept = c("text/.vcf", ".vcf")),
+            
+                            
         ),
 
         # Show a plot of the generated distribution
