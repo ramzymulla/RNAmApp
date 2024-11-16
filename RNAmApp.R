@@ -50,7 +50,7 @@ ui <- dashboardPage(
                         multiple = F,
                         accept=c("text/.vcf",
                                  ".vcf")),
-              textInput("MUTdb_url","...or url download link"),
+              textInput("MUTdb_url","...or provide a url download link"),
               actionButton("upload_button", "Upload Files"),
               uiOutput("upload_status")
       ),
