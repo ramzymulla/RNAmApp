@@ -68,17 +68,16 @@ ui <- dashboardPage(
               h3("Welcome to the RNA Mapper Pipeline!"),
               p("This app will guide you through the process of identifying causative mutations from bulk RNA-seq data."),
               p("Please use the menu on the left to navigate through different stages of the pipeline."),
-              p("Each step will allow you to upload files, process data, and view results."),
               
               h4("Instructions"),
               p("Follow these steps to use the mutant mapping pipeline:"),
               tags$ol(
                 tags$li("Step 1: Configure the pipeline and upload your input files."),
                 tags$li("Step 2: Process the data."),
-                tags$li("Step 3: View the processed results."),
-                tags$li("If you need help, consult the instructions here again.")
+                tags$li("Step 3: View candidate mutations."),
+                tags$li("If you need help, consult the README on github.")
               ),
-              p("Each step of the pipeline has file upload functionality and detailed instructions.")
+              p("PLACEHOLDER")
       ),
       
       # Step 1 Page with Multiple Tabs
