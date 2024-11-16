@@ -1,4 +1,16 @@
+# Overhead
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+.DS_Store
+
+# Testing/Dev stuff
+old_scripts/
+
+# file handles
+*.sam*
+*.bam*
+*.fq*
+*.fastq*
+*.vcf*
