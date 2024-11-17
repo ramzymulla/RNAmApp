@@ -30,7 +30,8 @@ unified_data <- reactiveValues(
   MUTdb_url = NULL,
   coverage = NULL,
   zygosity = NULL,
-  chr_list = NULL
+  chr_list = NULL,
+  run_flag = NULL
 )
 
 # Load modules

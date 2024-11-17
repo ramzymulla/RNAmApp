@@ -8,6 +8,7 @@
 
 # Testing/Dev stuff
 old_scripts/
+working_dir/*
 
 # file handles
 *.sam*

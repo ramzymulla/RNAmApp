@@ -5,6 +5,7 @@ step1ModuleUI <- function(id,accept_vectors) {
     h3("Step 1: Upload Data"),
     p("In this step, upload your input files for the RNA mapping pipeline."),
     fluidRow(
+      # Files Panel
       box(
         tabsetPanel(
           id = ns("file_upload_tabs"),
@@ -40,6 +41,8 @@ step1ModuleUI <- function(id,accept_vectors) {
             )
           )
         ),
+      
+      # Config Panel
       box(
         p("Please indicate the zygosity and coverage of your data."),
         textInput(ns("zygosity"), "Zygosity"),
@@ -47,7 +50,7 @@ step1ModuleUI <- function(id,accept_vectors) {
         actionButton(ns("config_button"), "Configure Pipeline"),
         uiOutput(ns("config_status")),
         tags$br(),
-        actionButton(ns("run_mapper"),"Run Pipeline"),
+        actionButton(ns("run_button"),"Start Mapping"),
         uiOutput(ns("run_status"))
       ),
     )
@@ -60,6 +63,7 @@ step1Module <- function(input, output, session, unified_data) {
     unified_data$zygosity <- input$zygosity
     unified_data$coverage <- input$coverage
     
+    # Write settings to mappeRsettings.txt
     mappersettingsfile <- file.path(getwd(),"working_dir","_settings", "mappeRsettings.txt")
     write(paste("coverage=",input$coverage,sep=''), file = mappersettingsfile)
     write(paste("zygosity=",input$zygosity,sep=''), file = mappersettingsfile,
@@ -75,6 +79,7 @@ step1Module <- function(input, output, session, unified_data) {
     unified_data$mut_reads <- input$mut_reads_1
     unified_data$MUTdb <- input$MUTdb_1
     unified_data$MUTdb_url <- input$MUTdb_url_1
+    unified_data$run_flag <- "rawreads"
 
     output$upload_status <- renderUI({
       p("Pipeline has been successfully initialized!")
@@ -87,9 +92,17 @@ step1Module <- function(input, output, session, unified_data) {
     unified_data$mut_reads <- input$mut_reads_2
     unified_data$MUTdb <- input$MUTdb_2
     unified_data$MUTdb_url <- input$MUTdb_url_2
+    unified_data$run_flag <- "alignedreads"
 
     output$upload_status <- renderUI({
       p("Pipeline has been successfully initialized!")
+    })
+  })
+  
+  # Handle pipeline
+  observeEvent(input$run_button, {
+    output$run_status <- renderUI({
+      p("Let the mapping commence!")
     })
   })
 }

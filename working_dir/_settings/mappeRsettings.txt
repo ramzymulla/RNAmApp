@@ -1,2 +1,2 @@
-coverage= 25
-zygosity= 25
+coverage=
+zygosity=
