@@ -1,3 +1,9 @@
 # RNA Mapper Shiny App
 
-***under construction***
+### Browser based front-end for the [RNA Mapper](https://github.com/daytonamelia/RNAmapper) pipeline. 
+
+---
+
+### Instructions
+
+ ***under construction*** 

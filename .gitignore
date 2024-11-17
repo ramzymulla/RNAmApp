@@ -4,6 +4,7 @@
 .RData
 .Ruserdata
 .DS_Store
+.Rapp.history
 
 # Testing/Dev stuff
 old_scripts/
