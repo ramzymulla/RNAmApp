@@ -31,7 +31,8 @@ unified_data <- reactiveValues(
   coverage = NULL,
   zygosity = NULL,
   chr_list = NULL,
-  run_flag = NULL
+  run_flag = NULL,
+  working_dir = NULL
 )
 
 # Load modules
@@ -63,6 +64,7 @@ ui <- dashboardPage(
       .skin-blue .main-header .logo { background-color: #154733; color: #FCE020; }
       .content-wrapper, .right-side { background-color: #FFFFFF; }
     "))),
+    
     sidebarMenu(
       menuItem("Home", tabName = "home", icon = icon("home")),
       menuItem("Step 1: Upload Data", tabName = "step_1", icon = icon("upload")),
@@ -83,13 +85,19 @@ ui <- dashboardPage(
 
 # Define server
 server <- function(input, output, session) {
+  
+  # Set upload limit to 100 Gb
   options(shiny.maxRequestSize = 10^5 * 1024^2)
+  
+  observeEvent({unified_data$working_dir == ''},{
+    unified_data$wdir = file.path(getwd(),"working_dir")
+  })
   
   # Call modules
   callModule(homeModule, "home")
   callModule(step1Module, "step1", unified_data)
-  callModule(step2Module, "step2")
-  callModule(step3Module, "step3")
+  callModule(step2Module, "step2", unified_data)
+  callModule(step3Module, "step3", unified_data)
 }
 
 # Run the application

@@ -64,7 +64,7 @@ step1Module <- function(input, output, session, unified_data) {
     unified_data$coverage <- input$coverage
     
     # Write settings to mappeRsettings.txt
-    mappersettingsfile <- file.path(getwd(),"working_dir","_settings", "mappeRsettings.txt")
+    mappersettingsfile <- file.path(unified_data$wdir,"_settings", "mappeRsettings.txt")
     write(paste("coverage=",input$coverage,sep=''), file = mappersettingsfile)
     write(paste("zygosity=",input$zygosity,sep=''), file = mappersettingsfile,
           append=TRUE)
@@ -104,5 +104,22 @@ step1Module <- function(input, output, session, unified_data) {
     output$run_status <- renderUI({
       p("Let the mapping commence!")
     })
+  })
+  
+  observeEvent({unified_data$run_flag == "alignedreads"}, {
+    setwd(unified_data$wdir)
+    
+    # # Split aligned reads into separate chromosomes
+    # system("split_chroms.sh")
+    
+    # Get list of chromosomes using bash command
+    unified_data$chr_list <-
+      system(paste('ls', 
+                  'grep -v "/"',
+                  'grep -E "mut.*\\.vcf"',
+                  'grep -E -v "mut_.*_"',
+                  'sed -E "s/.*mut_(.*)\\.vcf/\\1/"', 
+                  'sort -n -k1.4', sep = ' | '), 
+             intern=T)
   })
 }

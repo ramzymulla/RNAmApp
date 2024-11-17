@@ -8,7 +8,7 @@ step3ModuleUI <- function(id) {
   )
 }
 
-step3Module <- function(input,output,session) {
+step3Module <- function(input,output,session,unified_data) {
   observeEvent(input$process_button, {
     output$process_status <- renderUI({
       p("Processing data...")
