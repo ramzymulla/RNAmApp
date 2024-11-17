@@ -59,8 +59,13 @@ step1Module <- function(input, output, session, unified_data) {
   observeEvent(input$config_button, {
     unified_data$zygosity <- input$zygosity
     unified_data$coverage <- input$coverage
+    
+    mappersettingsfile <- file.path(getwd(),"working_dir","_settings", "mappeRsettings.txt")
+    write(paste("coverage=",input$coverage), file = mappersettingsfile)
+    write(paste("zygosity=",input$zygosity), file = mappersettingsfile,
+          append=TRUE)
     output$config_status <- renderUI({
-      p(paste(unified_data$zygosity,' ',unified_data$coverage))
+      p("Configuration has been updated")
     })
   })
 
@@ -87,16 +92,4 @@ step1Module <- function(input, output, session, unified_data) {
       p("Pipeline has been successfully initialized!")
     })
   })
-
-  # observeEvent(input$upload_button_1, {
-  #   output$upload_status <- renderUI({
-  #     p("Files successfully uploaded for Configuration 1!")
-  #   })
-  # })
-  # 
-  # observeEvent(input$upload_button_2, {
-  #   output$upload_status <- renderUI({
-  #     p("Files successfully uploaded for Configuration 2!")
-  #   })
-  # })
 }
