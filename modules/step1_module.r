@@ -61,8 +61,8 @@ step1Module <- function(input, output, session, unified_data) {
     unified_data$coverage <- input$coverage
     
     mappersettingsfile <- file.path(getwd(),"working_dir","_settings", "mappeRsettings.txt")
-    write(paste("coverage=",input$coverage), file = mappersettingsfile)
-    write(paste("zygosity=",input$zygosity), file = mappersettingsfile,
+    write(paste("coverage=",input$coverage,sep=''), file = mappersettingsfile)
+    write(paste("zygosity=",input$zygosity,sep=''), file = mappersettingsfile,
           append=TRUE)
     output$config_status <- renderUI({
       p("Configuration has been updated")

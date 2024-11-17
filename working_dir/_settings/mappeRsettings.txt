@@ -1,3 +1,2 @@
 coverage= 25
-
 zygosity= 25
