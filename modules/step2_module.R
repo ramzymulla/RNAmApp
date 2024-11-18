@@ -1,12 +1,14 @@
 tweaks <- 
   list(tags$head(tags$style(HTML("
                                  .multicol { 
-                                   height: 150px;
-                                   -webkit-column-count: 5; /* Chrome, Safari, Opera */ 
-                                   -moz-column-count: 5;    /* Firefox */ 
-                                   column-count: 5; 
-                                   -moz-column-fill: auto;
-                                   -column-fill: auto;
+                                   -webkit-column-count: auto; /* Chrome, Safari, Opera */
+                                   -webkit-column-width: 6rem;
+                                   -moz-column-count: auto;    /* Firefox */
+                                   -moz-column-width: 6rem;
+                                   column-count: auto;
+                                   column-width: 6rem;
+                                   -moz-column-fill: balance;
+                                   -column-fill: balance;
                                  } 
                                  ")) 
   ))
@@ -24,7 +26,7 @@ step2ModuleUI <- function(id) {
           tags$br(),
           
           fluidRow(
-            box(tweaks,
+            box(tweaks,width=4,
                 h3("Chromosomes"),
                 tags$div(class = 'multicol',
                          checkboxGroupInput(ns("chromosomes"), 
@@ -34,7 +36,7 @@ step2ModuleUI <- function(id) {
                                             inline=F)
                 )
             ),
-            box(
+            box(width=8,
               h3("Graphs will go here!")
             )
           )

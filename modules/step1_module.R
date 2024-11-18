@@ -107,7 +107,7 @@ step1Module <- function(input, output, session, unified_data) {
   })
   
   observeEvent({unified_data$run_flag == "alignedreads"}, {
-    setwd(unified_data$wdir)
+    # setwd(unified_data$wdir)
 
     # # Split aligned reads into separate chromosomes
     # system("split_chroms.sh")
