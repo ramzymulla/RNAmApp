@@ -32,7 +32,7 @@ unified_data <- reactiveValues(
   zygosity = NULL,
   chr_list = NULL,
   run_flag = NULL,
-  working_dir = NULL
+  wdir = NULL
 )
 
 # Load modules
@@ -89,7 +89,7 @@ server <- function(input, output, session) {
   # Set upload limit to 100 Gb
   options(shiny.maxRequestSize = 10^5 * 1024^2)
   
-  observeEvent({unified_data$working_dir == ''},{
+  observeEvent({unified_data$wdir == ''},{
     unified_data$wdir = file.path(getwd(),"working_dir")
   })
   

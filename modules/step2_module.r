@@ -8,6 +8,7 @@ step2ModuleUI <- function(id) {
             by selecting the corresponding boxes.'),
           actionButton(ns("process_button"), "Predict Variant Effects"),
           uiOutput(ns("process_status")),
+          tags$br(),
           
           box(
             checkboxGroupInput(ns("chromosomes"), 
