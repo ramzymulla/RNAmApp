@@ -1,3 +1,16 @@
+tweaks <- 
+  list(tags$head(tags$style(HTML("
+                                 .multicol { 
+                                   height: 150px;
+                                   -webkit-column-count: 5; /* Chrome, Safari, Opera */ 
+                                   -moz-column-count: 5;    /* Firefox */ 
+                                   column-count: 5; 
+                                   -moz-column-fill: auto;
+                                   -column-fill: auto;
+                                 } 
+                                 ")) 
+  ))
+
 step2ModuleUI <- function(id) {
   ns <- NS(id)
   # Step 2 Page
@@ -10,16 +23,22 @@ step2ModuleUI <- function(id) {
           uiOutput(ns("process_status")),
           tags$br(),
           
-          box(
-            checkboxGroupInput(ns("chromosomes"), 
-                               label = h3("Chromosomes"), 
-                               choices = paste("chr",as.character(1:25),sep=''),
-                               selected = paste("chr",as.character(1:25),sep=''),
-                               inline=T)
-          ),
-          box(
-            h3("Graphs will go here!")
+          fluidRow(
+            box(tweaks,
+                h3("Chromosomes"),
+                tags$div(class = 'multicol',
+                         checkboxGroupInput(ns("chromosomes"), 
+                                            label = NULL, 
+                                            choices = paste("chr",as.character(1:25),sep=''),
+                                            selected = paste("chr",as.character(1:25),sep=''),
+                                            inline=F)
+                )
+            ),
+            box(
+              h3("Graphs will go here!")
+            )
           )
+          
   )
 }
 
