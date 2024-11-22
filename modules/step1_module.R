@@ -79,7 +79,7 @@ step1Module <- function(input, output, session, unified_data) {
     unified_data$mut_reads <- input$mut_reads_1
     unified_data$MUTdb <- input$MUTdb_1
     unified_data$MUTdb_url <- input$MUTdb_url_1
-    unified_data$run_flag <- "rawreads"
+    unified_data$run_flag <- "rawreads_loaded"
 
     output$upload_status <- renderUI({
       p("Pipeline has been successfully initialized!")
@@ -92,7 +92,7 @@ step1Module <- function(input, output, session, unified_data) {
     unified_data$mut_reads <- input$mut_reads_2
     unified_data$MUTdb <- input$MUTdb_2
     unified_data$MUTdb_url <- input$MUTdb_url_2
-    unified_data$run_flag <- "alignedreads"
+    unified_data$run_flag <- "alignedreads_loaded"
 
     output$upload_status <- renderUI({
       p("Pipeline has been successfully initialized!")
@@ -104,6 +104,13 @@ step1Module <- function(input, output, session, unified_data) {
     output$run_status <- renderUI({
       p("Let the mapping commence!")
     })
+  })
+  
+  observeEvent({"loaded" %in% unified_data$run_flag},{
+    # Write files
+    if (is.null(unified_data$MUTdb) & !is.null(unified_data$MUTdb_url)){
+
+    }
   })
   
   observeEvent({unified_data$run_flag == "alignedreads"}, {
