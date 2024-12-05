@@ -11,7 +11,7 @@ step1ModuleUI <- function(id,accept_vectors) {
           id = ns("file_upload_tabs"),
           tabPanel("Aligned Reads",
                    h4("File Upload for Aligned Reads"),
-                   h5("Use this tab if your RNA-seq data has already been aligned (must be aligned using HISAT2!!)."),
+                   h5("Use this tab if your RNA-seq data has already been aligned (must be aligned using HISAT2)."),
                    fileInput(ns("wt_reads_aligned"), "Upload wild type RNA-seq data (SAM or BAM format)",
                              multiple = FALSE, accept = accept_vectors$genomes),
                    fileInput(ns("mut_reads_aligned"), "Upload mutant RNA-seq data (SAM or BAM format)",

@@ -37,7 +37,10 @@ step2ModuleUI <- function(id) {
                 )
             ),
             box(width=8,
-              h3("Graphs will go here!")
+                tags$div(
+                  tags$img(src = "1nt_mut_chr10.jpg", height = "300px", style = "margin-top: 10px;"),
+                  "Chr 10"
+                )
             )
           )
           

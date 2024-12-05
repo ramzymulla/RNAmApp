@@ -45,7 +45,7 @@ source("modules/step3_module.R")
 ui <- dashboardPage(
   dashboardHeader(
     title = tags$div(
-      tags$img(src = "uo_logo_funny.png", height = "40px", style = "margin-right: 10px;"),
+      tags$img(src = "uo_logo_duck.png", height = "40px", style = "margin-right: 10px;"),
       "RNA Mapper"
     ),
     titleWidth = 300
