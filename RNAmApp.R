@@ -4,12 +4,12 @@ library(shinydashboard)
 # File Accept Vectors
 accept_vectors <- list(
   'raw_reads' = c("text/plain","text/fastq", "text/fastq.gz",
-                        "text/fasta", "text/fasta.gz",
-                        "text/fa", "text/fa.gz",
-                        "text/fq.gz", "text/fq",
-                        ".fq", ".fq.gz", ".fastq", ".fastq.gz",
-                        ".fasta", ".fasta.gz", ".fa", ".fa.gz", 
-                        "application/x-gzip","application/x-zip"),
+                  "text/fasta", "text/fasta.gz",
+                  "text/fa", "text/fa.gz",
+                  "text/fq.gz", "text/fq",
+                  ".fq", ".fq.gz", ".fastq", ".fastq.gz",
+                  ".fasta", ".fasta.gz", ".fa", ".fa.gz", 
+                  "application/x-gzip","application/x-zip"),
   'genomes' = c("text/plain","application/x-sam", 
                 "application/x-bam", ".sam", ".bam",
                 "application/x-gzip","application/x-zip"),
@@ -45,7 +45,7 @@ source("modules/step3_module.R")
 ui <- dashboardPage(
   dashboardHeader(
     title = tags$div(
-      tags$img(src = "uo_logo_duck.png", height = "40px", style = "margin-right: 10px;"),
+      tags$img(src = "miller_lab_logo_noback.png", height = "50px", style = "margin-right: 10px;"),
       "RNA Mapper"
     ),
     titleWidth = 300
@@ -54,20 +54,21 @@ ui <- dashboardPage(
   dashboardSidebar(
     width = 300,
     tags$head(tags$style(HTML("
-      .skin-blue .main-sidebar { background-color: #154733; }
+      .skin-blue .main-sidebar { background-color: #3a3a3a; }
       .skin-blue .main-sidebar .sidebar-menu > li > a { color: #FFFFFF; }
       .skin-blue .main-sidebar .sidebar-menu > li.active > a {
         background-color: #FCE020;
-        color: #154733;
+        color: #3a3a3a;
       }
-      .skin-blue .main-header .navbar { background-color: #154733; }
-      .skin-blue .main-header .logo { background-color: #154733; color: #FCE020; }
+      .skin-blue .main-header .navbar { background-color: #3a3a3a; }
+      .skin-blue .main-header .navbar:hover { background-color: #1e282c; }
+      .skin-blue .main-header .logo { background-color: #3a3a3a; color: #FCE020; }
+      .skin-blue .main-header .logo:hover { background-color: #1e282c; }
       .content-wrapper, .right-side { background-color: #FFFFFF; }
     "))),
-    
     sidebarMenu(
       menuItem("Home", tabName = "home", icon = icon("home")),
-      menuItem("Step 1: Upload Data", tabName = "step_1", icon = icon("upload")),
+      menuItem("Step 1: Upload Files", tabName = "step_1", icon = icon("upload")),
       menuItem("Step 2: Map Variants", tabName = "step_2", icon = icon("cogs")),
       menuItem("Step 3: View Candidate Mutations", tabName = "step_3", icon = icon("table"))
     )
@@ -76,7 +77,7 @@ ui <- dashboardPage(
   dashboardBody(
     tabItems(
       homeModuleUI("home"),
-      step1ModuleUI("step1",accept_vectors),
+      step1ModuleUI("step1"),
       step2ModuleUI("step2"),
       step3ModuleUI("step3")
     )

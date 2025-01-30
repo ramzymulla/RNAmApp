@@ -1,4 +1,26 @@
-step1ModuleUI <- function(id,accept_vectors) {
+# File Accept Vectors
+accept_vectors <- list(
+  'raw_reads' = c("text/plain","text/fastq", "text/fastq.gz",
+                  "text/fasta", "text/fasta.gz",
+                  "text/fa", "text/fa.gz",
+                  "text/fq.gz", "text/fq",
+                  ".fq", ".fq.gz", ".fastq", ".fastq.gz",
+                  ".fasta", ".fasta.gz", ".fa", ".fa.gz", 
+                  "application/x-gzip","application/x-zip"),
+  'genomes' = c("text/plain","application/x-sam", 
+                "application/x-bam", ".sam", ".bam",
+                "application/x-gzip","application/x-zip"),
+  'variants' = c("text/plain","application/x-vcf", ".vcf", 
+                 "application/x-vcf.gz", ".vcf.gz",
+                 "application/x-gzip","application/x-zip"),
+  'genemodels' = c("text/plain","application/x-gzip", ".gtf", ".gtf.gz",
+                   "application/x-gzip","application/x-zip"),
+  'folder' = c('application/x-gzip','application/x-zip', 
+               'application/x-tar')
+)
+
+
+step1ModuleUI <- function(id) {
   ns <- NS(id)
   tabItem(
     tabName = "step_1",
@@ -109,8 +131,12 @@ step1Module <- function(input, output, session, unified_data) {
   observeEvent({"loaded" %in% unified_data$run_flag},{
     # Write files
     if (is.null(unified_data$MUTdb) & !is.null(unified_data$MUTdb_url)){
-
+      # Retrieve data from url
+      download.file(unified_data$MUTdb_url, 
+                    file.path(unified_data$wdir,"MUTdb.vcf"))
     }
+    
+    
   })
   
   observeEvent({unified_data$run_flag == "alignedreads"}, {
