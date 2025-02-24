@@ -125,6 +125,10 @@ step1Module <- function(input, output, session, unified_data) {
   observeEvent(input$run_button, {
     output$run_status <- renderUI({
       p("Let the mapping commence!")
+      
+      # run mapping scripts
+      
+      
     })
   })
   

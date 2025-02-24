@@ -2,7 +2,7 @@ homeModuleUI <- function(id) {
   ns <- NS(id)
   tabItem(
     tabName = "home",
-    tags$img(src = "MillerLogo1.jpg", height = "150px", style = "display: block; margin: auto;"),
+    tags$img(src = "miller_banner.jpg", height = "150px", style = "display: block; margin: auto;"),
     h3("Welcome to the RNA Mapper Pipeline!"),
     p("This app will guide you through the process of identifying causative mutations from bulk RNA-seq data."),
     p("Please use the menu on the left to navigate through different stages of the pipeline."),
